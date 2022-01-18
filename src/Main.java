@@ -1,14 +1,18 @@
 import java.util.*;
 
 public class Main {
+
+    public static HashMap<String, Integer> cards;
+    public static List<String> cardKey;
+
+    public static ArrayList<Integer> playerCard, dealerCard; 
+
     public static void main(String[] args) {
         new Frame("Blackjack", 700, 700);
-        HashMap<String, Integer> cards = CardHandler.cardGenerator();
-        System.out.println(cards);
-
-        List<String> cardKey = CardHandler.cardShuffle(cards);
-        
-        System.out.println("\n" + cardKey);
-        System.out.println(CardHandler.drawCard(cards, cardKey));
+        playerCard = new ArrayList<Integer>();
+        dealerCard = new ArrayList<Integer>();
+        cards = CardHandler.cardGenerator();
+        cardKey = CardHandler.cardShuffle(cards);
+        CardHandler.getCards(playerCard, dealerCard, cards, cardKey);
     }
 }

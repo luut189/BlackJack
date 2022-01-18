@@ -25,7 +25,7 @@ public class CardHandler {
         return cardKey;
     }
 
-    public static int getCard(HashMap<String, Integer> cards, List<String> cardKey) {
+    public static int getSingleCard(HashMap<String, Integer> cards, List<String> cardKey) {
         int card = cards.get(cardKey.get(0));
         cards.remove(cardKey.get(0));
         cardKey.remove(0);
@@ -33,9 +33,16 @@ public class CardHandler {
     }
 
     public static int drawCard(HashMap<String, Integer> cards, List<String> cardKey) {
-        int card = cards.get(cardKey.get(51));
-        cards.remove(cardKey.get(51));
-        cardKey.remove(51);
+        int card = cards.get(cardKey.get(cards.size()-1));
+        cards.remove(cardKey.get(cards.size()-1));
+        cardKey.remove(cards.size()-1);
         return card;
+    }
+
+    public static void getCards(ArrayList<Integer> player, ArrayList<Integer> dealer, HashMap<String, Integer> cards, List<String> cardKey) {
+        player.add(getSingleCard(cards, cardKey));
+        dealer.add(getSingleCard(cards, cardKey));
+        player.add(getSingleCard(cards, cardKey));
+        dealer.add(getSingleCard(cards, cardKey));
     }
 }
