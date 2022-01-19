@@ -6,7 +6,7 @@ public class Frame extends JFrame implements ActionListener {
     
     Renderer panel;
     JPanel gamePanel = new JPanel();
-    JTextField score;
+    JTextArea score;
 
     public static JButton drawButton, restartButton, confirmButton;
 
@@ -22,9 +22,9 @@ public class Frame extends JFrame implements ActionListener {
         restartButton = new JButton("Restart");
         restartButton.addActionListener(this);
 
-        score = new JTextField("Score: ");
+        score = new JTextArea("Your points: \n" +
+                              "Dealer points: ");
         score.setEditable(false);
-        score.setHorizontalAlignment(SwingConstants.CENTER);
 
         gamePanel.setPreferredSize(new Dimension(200, 700));
         gamePanel.setLayout(new GridLayout(2, 2));
@@ -54,21 +54,57 @@ public class Frame extends JFrame implements ActionListener {
             Main.cardKey = CardHandler.cardShuffle(Main.cards);
             CardHandler.getCards(Main.playerCard, Main.dealerCard, Main.cards, Main.cardKey);
 
-            score.setText("Score:");
+            score.setText("Your points: \n" +
+                          "Dealer points: ");
+            drawButton.setEnabled(true);
+            DealerHandler.isStand = false;
 
-            System.out.println("Player cards: " + Main.playerCard);
-            System.out.println("Dealer cards: " + Main.dealerCard + "\n");
+            System.out.println("Dealer cards: " + Main.dealerCard);
+            System.out.println("Player cards: " + Main.playerCard + "\n");
             repaint();
         } else if(n == drawButton) {
             Main.playerCard.add(CardHandler.drawCard(Main.cards, Main.cardKey));
             System.out.println(Main.playerCard);
             repaint();
         } else if(n == confirmButton) {
-            int sum = 0;
-            for(int i = 0; i < Main.playerCard.size(); i++) {
-                sum += Main.playerCard.get(i);
+            int playerSum = CardHandler.playerSum(Main.playerCard);
+            drawButton.setEnabled(false);
+            DealerHandler.isStand = true;
+            repaint();
+            int dealerSum = DealerHandler.dealerMove(Main.cards, Main.cardKey, Main.dealerCard, DealerHandler.dealerSum(Main.dealerCard));
+            if(playerSum > 21 && dealerSum > 21) {
+                if(playerSum < dealerSum) {
+                    score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                                  "Your points: " + String.valueOf(playerSum) + "\n" +
+                                  "Player wins!");
+                } else {
+                    score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                                  "Your points: " + String.valueOf(playerSum) + "\n" +
+                                  "Dealer wins!");
+                }
+            } else if (playerSum <= 21 && dealerSum <= 21) {
+                if(playerSum > dealerSum) {
+                    score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                                  "Your points: " + String.valueOf(playerSum) + "\n" +
+                                  "Player wins!");
+                } else {
+                    score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                                  "Your points: " + String.valueOf(playerSum) + "\n" +
+                                  "Dealer wins!");
+                }
+            } else if(playerSum == dealerSum) {
+                score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                              "Your points: " + String.valueOf(playerSum) + "\n" +
+                              "Draw!");
+            } else if(dealerSum > 21 && playerSum <= 21) {
+                score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                              "Your points: " + String.valueOf(playerSum) + "\n" +
+                              "Player wins!");
+            } else if(playerSum > 21 && dealerSum <= 21) {
+                score.setText("Dealer points: " + String.valueOf(dealerSum) + "\n" +
+                              "Your points: " + String.valueOf(playerSum) + "\n" +
+                              "Dealer wins!");
             }
-            score.setText("Score: " + String.valueOf(sum));
         }
     }
 }

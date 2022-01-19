@@ -25,24 +25,41 @@ public class CardHandler {
         return cardKey;
     }
 
-    public static int getSingleCard(HashMap<String, Integer> cards, List<String> cardKey) {
-        int card = cards.get(cardKey.get(0));
+    public static String getSingleCard(HashMap<String, Integer> cards, List<String> cardKey) {
+        String card = cardKey.get(0);
         cards.remove(cardKey.get(0));
         cardKey.remove(0);
         return card;
     }
 
-    public static int drawCard(HashMap<String, Integer> cards, List<String> cardKey) {
-        int card = cards.get(cardKey.get(cards.size()-1));
+    public static String drawCard(HashMap<String, Integer> cards, List<String> cardKey) {
+        String card = cardKey.get(cards.size()-1);
         cards.remove(cardKey.get(cards.size()-1));
         cardKey.remove(cards.size());
         return card;
     }
 
-    public static void getCards(ArrayList<Integer> player, ArrayList<Integer> dealer, HashMap<String, Integer> cards, List<String> cardKey) {
+    public static void getCards(ArrayList<String> player, ArrayList<String> dealer, HashMap<String, Integer> cards, List<String> cardKey) {
         player.add(getSingleCard(cards, cardKey));
         dealer.add(getSingleCard(cards, cardKey));
         player.add(getSingleCard(cards, cardKey));
         dealer.add(getSingleCard(cards, cardKey));
+    }
+
+    public static int playerSum(ArrayList<String> playerCard) {
+        int sum = 0;
+        for(int i = 0; i < playerCard.size(); i++) {
+            if(playerCard.get(i).length() != 3 && playerCard.get(i).charAt(1) == '1') {
+                sum += 11;
+            } else {
+                sum += Main.baseCards.get(playerCard.get(i));
+            }
+        }
+        for(int i = 0; i < playerCard.size(); i++) {
+            if(sum > 21 && playerCard.get(i).length() != 3 && playerCard.get(i).charAt(1) == '1') {
+                sum -= 10;
+            }
+        }
+        return sum;
     }
 }

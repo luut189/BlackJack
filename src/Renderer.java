@@ -42,6 +42,7 @@ public class Renderer extends JPanel {
     }
 
     public void draw(Graphics g) {
+        // Draw the game board
         g.setColor(new Color(67, 143, 71));
         for(int i = 0; i < width/unitSize; i++) {
             g.drawLine(0, i*unitSize, width, i*unitSize);
@@ -50,8 +51,26 @@ public class Renderer extends JPanel {
             g.drawLine(i*unitSize, 0, i*unitSize, height);
         }
         
+        // Draw the deck of cards
         for(int i = 0; i < Main.cardKey.size(); i++) {
             g.drawImage(cardImg.get("Backside"), i*10+60, height/2-(5*unitSize), 4*unitSize, 5*unitSize, null);
+        }
+
+        // Draw the player's cards
+        for(int i = 0; i < Main.playerCard.size(); i++) {
+            g.drawImage(cardImg.get(Main.playerCard.get(i)), i*20+60, height-(5*unitSize)-20, 4*unitSize, 5*unitSize, null);
+        }
+
+        // Draw the dealer's cards
+        if(!DealerHandler.isStand) {
+            for(int i = 0; i < Main.dealerCard.size(); i++) {
+                if(i == 0) g.drawImage(cardImg.get(Main.dealerCard.get(i)), i*20+60, 20, 4*unitSize, 5*unitSize, null);
+                else g.drawImage(cardImg.get("Backside"), i*20+60, 20, 4*unitSize, 5*unitSize, null);
+            }
+        } else {
+            for(int i = 0; i < Main.dealerCard.size(); i++) {
+                g.drawImage(cardImg.get(Main.dealerCard.get(i)), i*20+60, 20, 4*unitSize, 5*unitSize, null);
+            }
         }
     }
 }
