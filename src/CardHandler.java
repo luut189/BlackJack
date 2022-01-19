@@ -35,7 +35,7 @@ public class CardHandler {
     public static int drawCard(HashMap<String, Integer> cards, List<String> cardKey) {
         int card = cards.get(cardKey.get(cards.size()-1));
         cards.remove(cardKey.get(cards.size()-1));
-        cardKey.remove(cards.size()-1);
+        cardKey.remove(cards.size());
         return card;
     }
 

@@ -14,5 +14,7 @@ public class Main {
         cards = CardHandler.cardGenerator();
         cardKey = CardHandler.cardShuffle(cards);
         CardHandler.getCards(playerCard, dealerCard, cards, cardKey);
+        System.out.println("Player cards: " + playerCard);
+        System.out.println("Dealer cards: " + dealerCard + "\n");
     }
 }
