@@ -53,7 +53,7 @@ public class Renderer extends JPanel {
         
         // Draw the deck of cards
         for(int i = 0; i < Main.cardKey.size(); i++) {
-            g.drawImage(cardImg.get("Backside"), i*10+60, height/2-(5*unitSize), 4*unitSize, 5*unitSize, null);
+            g.drawImage(cardImg.get("Backside"), i*10+60, height/2-(5*unitSize)+2*unitSize+12, 4*unitSize, 5*unitSize, null);
         }
 
         // Draw the player's cards
