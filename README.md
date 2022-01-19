@@ -17,9 +17,9 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 ## Changelogs
 
-> Current: Find bugs in the code.
+> Current: Clean up the code.
 
-> Next: Review the code and clean up the code (maybe).
+> Next: Review the code.
 
 `ver 0.0.0`: implement the CardHandler and a basic Swing GUI.
 
@@ -28,3 +28,5 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 `ver 0.1`: implement the renderer for the card deck and getting started to work on game functions.
 
 `ver 0.2`: implement the Blackjack's logic into the game with a working GUI to represent the game.
+
+`ver 1.0`: finished the program and clean up the code.

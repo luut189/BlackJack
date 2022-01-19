@@ -4,20 +4,28 @@ import javax.swing.*;
 
 public class Renderer extends JPanel {
 
+    // declare and initialize the unit size for easier rendering
     static final int unitSize = 25;
+
+    // declare the width and height
     private int width, height;
 
     public HashMap<String, Image> cardImg;
 
+    // constructor
     Renderer(int width, int height) {
         this.setPreferredSize(new Dimension(width, height));
         this.setBackground(new Color(78, 169, 101));
         this.width = width;
         this.height = height;
 
+        // initialize the HashMap using method
         cardImg = imageRenderer();
     }
 
+    /*
+    This method will render the image of each card in the deck as well as the backside of the card and store them in a HashMap with its corresponding key.
+    */
     public HashMap<String, Image> imageRenderer() {
         HashMap<String, Image> cards = new HashMap<>();
         char[] symbol = {'H', 'D', 'C', 'S'};
@@ -36,11 +44,14 @@ public class Renderer extends JPanel {
         return cards;
     }
 
+
+    // this will be responsible for drawing all the component onto the screen
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
 
+    // graphics class' draw() method
     public void draw(Graphics g) {
         // Draw the game board
         g.setColor(new Color(67, 143, 71));
@@ -53,7 +64,7 @@ public class Renderer extends JPanel {
         
         // Draw the deck of cards
         for(int i = 0; i < Main.cardKey.size(); i++) {
-            g.drawImage(cardImg.get("Backside"), i*10+60, height/2-(5*unitSize)+2*unitSize+12, 4*unitSize, 5*unitSize, null);
+            g.drawImage(cardImg.get(Main.cardKey.get(i)), i*10+60, height/2-(5*unitSize)+2*unitSize+12, 4*unitSize, 5*unitSize, null);
         }
 
         // Draw the player's cards
