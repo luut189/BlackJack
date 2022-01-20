@@ -90,9 +90,9 @@ public class CardHandler {
             winner = "Draw!";
         }
         return 
-        "Dealer points: " + String.valueOf(dealerSum) + "\n" +
+        "Dealer points: " + String.valueOf(dealerSum) + "\t" +
         "Your points: " + String.valueOf(playerSum) + "\n" +
-        winner;
+        "Status: " + winner;
     }
 
     /*
@@ -104,11 +104,7 @@ public class CardHandler {
     public static int playerWin(int playerSum, int dealerSum) {
         int check = 3;
         if(playerSum > 21 && dealerSum > 21) {
-            if(playerSum < dealerSum) {
-                check = 1;
-            } else {
-                check = 0;
-            }
+            check = 0;
         } else if (playerSum <= 21 && dealerSum <= 21 && playerSum != dealerSum) {
             if(playerSum > dealerSum) {
                 check = 1;

@@ -23,9 +23,7 @@ public class Renderer extends JPanel {
         cardImg = imageRenderer();
     }
 
-    /*
-    This method will render the image of each card in the deck as well as the backside of the card and store them in a HashMap with its corresponding key.
-    */
+    // method to render the image of each card in the deck as well as the backside of the card and store them in a HashMap with its corresponding key.
     public HashMap<String, Image> imageRenderer() {
         HashMap<String, Image> cards = new HashMap<>();
         char[] symbol = {'H', 'D', 'C', 'S'};
@@ -64,7 +62,7 @@ public class Renderer extends JPanel {
         
         // Draw the deck of cards
         for(int i = 0; i < Main.cardKey.size(); i++) {
-            g.drawImage(cardImg.get(Main.cardKey.get(i)), i*10+60, height/2-(5*unitSize)+2*unitSize+12, 4*unitSize, 5*unitSize, null);
+            g.drawImage(cardImg.get("Backside"), i*12+20, height/2-(5*unitSize)+2*unitSize+12, 4*unitSize, 5*unitSize, null);
         }
 
         // Draw the player's cards
