@@ -15,7 +15,7 @@ public class Renderer extends JPanel {
     // constructor
     Renderer(int width, int height) {
         this.setPreferredSize(new Dimension(width, height));
-        this.setBackground(new Color(78, 169, 101));
+        this.setBackground(new Color(67, 143, 71));
         this.width = width;
         this.height = height;
 
@@ -52,7 +52,7 @@ public class Renderer extends JPanel {
     // graphics class' draw() method
     public void draw(Graphics g) {
         // Draw the game board
-        g.setColor(new Color(67, 143, 71));
+        g.setColor(new Color(48, 135, 45));
         for(int i = 0; i < width/unitSize; i++) {
             g.drawLine(0, i*unitSize, width, i*unitSize);
         }

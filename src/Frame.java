@@ -14,6 +14,8 @@ public class Frame extends JFrame implements ActionListener {
     // declare static JButtons
     public static JButton drawButton, restartButton, confirmButton;
 
+    public static Font gameFont = new Font("Futura", Font.BOLD, 12);
+
     Frame(String name, int width, int height) {
         // initialize the graphic panel
         panel = new Renderer(width, height);
@@ -21,18 +23,22 @@ public class Frame extends JFrame implements ActionListener {
         // initialize all of the JButtons of the game
         drawButton = new JButton("Hit!");
         drawButton.addActionListener(this);
+        drawButton.setFont(gameFont);
         
         confirmButton = new JButton("Stand!");
         confirmButton.addActionListener(this);
+        confirmButton.setFont(gameFont);
 
         restartButton = new JButton("Restart");
         restartButton.addActionListener(this);
+        restartButton.setFont(gameFont);
 
         // initialize the JTextArea component for displaying points and winner
-        score = new JTextArea("Dealer points:  \t\t" +
+        score = new JTextArea("Dealer points:  \t" +
                               "Your points:  \n" +
                               "Status: ");
         score.setEditable(false);
+        score.setFont(gameFont);
 
 
         // setup the game panel and adding component into it
@@ -71,7 +77,7 @@ public class Frame extends JFrame implements ActionListener {
             CardHandler.getCards(Main.playerCard, Main.dealerCard, Main.cards, Main.cardKey);
 
             // reset the components
-            score.setText("Dealer points:  \t\t" +
+            score.setText("Dealer points:  \t" +
                           "Your points:  \n" +
                           "Status: ");
             drawButton.setEnabled(true);
