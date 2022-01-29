@@ -30,15 +30,15 @@ public class Renderer extends JPanel {
         for(int i = 0; i < 4; i++) {
             for(int j = 1; j <= 13; j++) {
                 if(j <= 10) {
-                    cards.put(symbol[i] + String.valueOf(j), new ImageIcon("../assets/" + symbol[i] + String.valueOf(j) + ".png").getImage());
+                    cards.put(symbol[i] + String.valueOf(j), new ImageIcon(getClass().getResource("assets/" + symbol[i] + String.valueOf(j) + ".png")).getImage());
                 } else {
-                    if(j == 11) cards.put(symbol[i] + "J", new ImageIcon("../assets/" + symbol[i] + "J" + ".png").getImage());
-                    else if(j == 12) cards.put(symbol[i] + "Q", new ImageIcon("../assets/" + symbol[i] + "Q" + ".png").getImage());
-                    else if(j == 13) cards.put(symbol[i] + "K", new ImageIcon("../assets/" + symbol[i] + "K" + ".png").getImage());
+                    if(j == 11) cards.put(symbol[i] + "J", new ImageIcon(getClass().getResource("assets/" + symbol[i] + "J" + ".png")).getImage());
+                    else if(j == 12) cards.put(symbol[i] + "Q", new ImageIcon(getClass().getResource("assets/" + symbol[i] + "Q" + ".png")).getImage());
+                    else if(j == 13) cards.put(symbol[i] + "K", new ImageIcon(getClass().getResource("assets/" + symbol[i] + "K" + ".png")).getImage());
                 }
             }
         }
-        cards.put("Backside", new ImageIcon("../assets/Backside.png").getImage());
+        cards.put("Backside", new ImageIcon(getClass().getResource("assets/Backside.png")).getImage());
         return cards;
     }
 

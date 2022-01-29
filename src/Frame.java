@@ -34,7 +34,7 @@ public class Frame extends JFrame implements ActionListener {
         restartButton.setFont(gameFont);
 
         // initialize the JTextArea component for displaying points and winner
-        score = new JTextArea("Dealer points:  \t" +
+        score = new JTextArea("Dealer points:  \t\t" +
                               "Your points:  \n" +
                               "Status: ");
         score.setEditable(false);
@@ -77,7 +77,7 @@ public class Frame extends JFrame implements ActionListener {
             CardHandler.getCards(Main.playerCard, Main.dealerCard, Main.cards, Main.cardKey);
 
             // reset the components
-            score.setText("Dealer points:  \t" +
+            score.setText("Dealer points:  \t\t" +
                           "Your points:  \n" +
                           "Status: ");
             drawButton.setEnabled(true);
